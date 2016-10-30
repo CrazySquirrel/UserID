@@ -5,7 +5,7 @@
     "inlineSourceMap": true
   },
   "files": [
-
+    "./lib/UserID.ts"
   ],
   "exclude": [
     "node_modules",

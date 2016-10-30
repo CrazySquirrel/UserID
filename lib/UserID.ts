@@ -8,6 +8,7 @@ import IWindow from "../interfaces/IWindow";
  */
 declare let window: IWindow;
 declare let require: any;
+declare let module: any;
 
 /**
  * Import interface
@@ -22,10 +23,10 @@ let btoa = require("btoa");
 /**
  * Import dependency classes
  */
-import MurmurHash3 from "../vendors/MurmurHash3";
-import EverCookie from "../vendors/EverCookie";
+import MurmurHash3 from "./MurmurHash3";
 
-import Utils from "../vendors/Utils";
+let EverCookie = require("EverCookie");
+let Utils = require("Utils");
 /**
  * User ID class
  */
@@ -502,3 +503,5 @@ export default class UserID implements IUserID {
         return results;
     }
 }
+
+module.exports = UserID;
