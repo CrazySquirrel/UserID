@@ -1,6 +1,6 @@
 {
   "name": "UserID",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./lib/UserID.js",
   "description": "Unique user ID generator.",
   "keywords": [
