@@ -32,10 +32,10 @@
     }
   },
   "dependencies": {
-    "AnimationFrame": "^1.0.5",
-    "CSLogger": "^1.0.7",
-    "EverCookie": "^1.0.4",
-    "Utils": "^1.0.5",
+    "AnimationFrame": "^1.0.x",
+    "CSLogger": "^1.0.x",
+    "EverCookie": "^1.0.x",
+    "Utils": "^1.0.x",
     "btoa": "^1.1.2",
     "crypto-js": "^3.1.8"
   },
