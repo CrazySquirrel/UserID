@@ -280,6 +280,6 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * MurmurHash3 constructor
      */
     constructor() {
-        Utils.implementationStaticMethods(this);
+        Utils.implementationStaticMethods(this, "MurmurHash3");
     }
 }
