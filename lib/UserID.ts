@@ -25,8 +25,8 @@ let btoa = require("btoa");
  */
 import MurmurHash3 from "./MurmurHash3";
 
-let EverCookie = require("EverCookie");
-let Utils = require("Utils");
+import EverCookie from "EverCookie";
+import Utils from "Utils";
 /**
  * User ID class
  */
