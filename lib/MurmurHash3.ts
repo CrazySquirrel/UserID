@@ -4,7 +4,7 @@
  */
 import IMurmurHash3 from "../interfaces/IMurmurHash3";
 
-let Utils = require("Utils");
+import Utils from "Utils";
 /**
  * MurmurHash3
  */

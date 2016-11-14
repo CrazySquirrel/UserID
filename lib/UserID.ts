@@ -133,12 +133,13 @@ export default class UserID implements IUserID {
      */
     public static getUserLanguage(): Object|boolean {
         try {
+            let _navigator: any = window.navigator;
             return ({
                 UserLanguage: (
-                    window.navigator.language ||
-                    window.navigator.userLanguage ||
-                    window.navigator.browserLanguage ||
-                    window.navigator.systemLanguage ||
+                    _navigator.language ||
+                    _navigator.userLanguage ||
+                    _navigator.browserLanguage ||
+                    _navigator.systemLanguage ||
                     ""
                 ),
             });
