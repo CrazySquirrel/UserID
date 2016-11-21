@@ -258,6 +258,7 @@ export default class UserID implements IUserID {
      */
     public getUID(callback) {
         this.getIP((result) => {
+            console.log(result);
             callback([
                 Utils.User.getInfo(),
                 UserID.getUserLanguage(),
@@ -433,7 +434,13 @@ export default class UserID implements IUserID {
      */
     public getIP(callback) {
         try {
-            this.getIPFromRTC(callback);
+            this.getIPFromRTC((result) => {
+                if (result) {
+                    callback(result);
+                } else {
+                    this.getIPFromServer(callback);
+                }
+            });
         } catch (e) {
             callback(false);
         }
@@ -474,6 +481,32 @@ export default class UserID implements IUserID {
             } else {
                 callback(false);
             }
+        } catch (e) {
+            callback(false);
+        }
+    }
+
+    /**
+     * Get user IP from server
+     * @param callback
+     */
+    public getIPFromServer(callback) {
+        try {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = () => {
+                if (xhr.readyState != 4) {
+                    return;
+                }
+                if (xhr.status === 200 && xhr.responseText) {
+                    callback({
+                        IP: xhr.responseText,
+                    });
+                } else {
+                    callback(false);
+                }
+            };
+            xhr.open("GET", "//ssp.rambler.ru/userip");
+            xhr.send();
         } catch (e) {
             callback(false);
         }
