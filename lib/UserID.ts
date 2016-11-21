@@ -258,7 +258,6 @@ export default class UserID implements IUserID {
      */
     public getUID(callback) {
         this.getIP((result) => {
-            console.log(result);
             callback([
                 Utils.User.getInfo(),
                 UserID.getUserLanguage(),
