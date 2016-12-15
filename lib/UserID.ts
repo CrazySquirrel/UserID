@@ -48,7 +48,7 @@ export default class UserID implements IUserID {
                  * If key matched to FingerPrint and it is not current version, then remove that item from storages
                  */
                 if (
-                    key.indexOf("FingerPrint") !== -1 &&
+                    key.indexOf("#PACKAGE_NAME#") !== -1 &&
                     key.indexOf("#PACKAGE_NAME#_#PACKAGE_VERSION#") === -1
                 ) {
                     /**
