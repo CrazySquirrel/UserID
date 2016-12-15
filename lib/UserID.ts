@@ -235,7 +235,9 @@ export default class UserID implements IUserID {
             /**
              * Write full user ID into the EverCookie
              */
-            this.EverCookie.setItem(true, "FingerPrint", this.IDUID);
+            if (this.IDEverCookie !== this.IDUID) {
+                this.EverCookie.setItem(true, "FingerPrint", this.IDUID);
+            }
         });
 
         Utils.implementationStaticMethods(this, "UserID");
