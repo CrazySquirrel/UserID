@@ -8,9 +8,6 @@
     "AnimationFrame": [
       "./node_modules/AnimationFrame/lib/AnimationFrame.ts"
     ],
-    "CSLogger": [
-      "./node_modules/CSLogger/lib/CSLogger.ts"
-    ],
     "EverCookie": [
       "./node_modules/EverCookie/lib/EverCookie.ts"
     ],

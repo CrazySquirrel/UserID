@@ -131,7 +131,6 @@ module.exports = {
         alias: {
             "AnimationFrame": path.join(__dirname, "node_modules") + "/AnimationFrame/lib/AnimationFrame.ts",
             "Utils": path.join(__dirname, "node_modules") + "/Utils/lib/Utils.ts",
-            "CSLogger": path.join(__dirname, "node_modules") + "/CSLogger/lib/CSLogger.ts",
             "EverCookie": path.join(__dirname, "node_modules") + "/EverCookie/lib/EverCookie.ts"
         }
     },
