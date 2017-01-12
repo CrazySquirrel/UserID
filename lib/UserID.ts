@@ -199,10 +199,14 @@ export default class UserID implements IUserID {
     public IDUID: any;
     public IDBASE: any;
 
+    public Settings: any = {
+        IPUrl: "",
+    };
+
     /**
      * User ID constructor
      */
-    constructor() {
+    constructor(settings: any = {}) {
         /**
          * Clear previous version of FingerPrint
          */
@@ -210,6 +214,7 @@ export default class UserID implements IUserID {
         /**
          * Generate IDs
          */
+        this.Settings = settings;
         this.IDEverCookie = "";
         this.IDUID = "";
         this.IDBASE = UserID.getFingerPrintHash(JSON.stringify([
@@ -438,8 +443,13 @@ export default class UserID implements IUserID {
             this.getIPFromRTC((result) => {
                 if (result) {
                     callback(result);
-                } else {
+                } else if (
+                    this.Settings &&
+                    this.Settings.IPUrl
+                ) {
                     this.getIPFromServer(callback);
+                } else {
+                    callback(false);
                 }
             });
         } catch (e) {
@@ -493,21 +503,31 @@ export default class UserID implements IUserID {
      */
     public getIPFromServer(callback) {
         try {
-            let xhr = new XMLHttpRequest();
-            xhr.onload = () => {
-                if (xhr.readyState != 4) {
-                    return;
-                }
-                if (xhr.status === 200 && xhr.responseText) {
-                    callback({
-                        IP: xhr.responseText,
-                    });
-                } else {
+            if (
+                this.Settings &&
+                this.Settings.IPUrl
+            ) {
+                let xhr = new XMLHttpRequest();
+                xhr.onload = () => {
+                    if (xhr.readyState !== 4) {
+                        return;
+                    }
+                    if (xhr.status === 200 && xhr.responseText) {
+                        callback({
+                            IP: xhr.responseText,
+                        });
+                    } else {
+                        callback(false);
+                    }
+                };
+                xhr.onerror = () => {
                     callback(false);
-                }
-            };
-            xhr.open("GET", "//ssp.rambler.ru/userip");
-            xhr.send();
+                };
+                xhr.open("GET", this.Settings.IPUrl);
+                xhr.send();
+            } else {
+                callback(false);
+            }
         } catch (e) {
             callback(false);
         }
