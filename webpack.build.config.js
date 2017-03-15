@@ -123,6 +123,9 @@ module.exports = {
       "AnimationFrame": path.join(__dirname, "node_modules")
       + "/AnimationFrame/lib/AnimationFrame.ts",
       "Utils": path.join(__dirname, "node_modules") + "/Utils/lib/Utils.ts",
+      "UtilsMain": path.join(__dirname, "node_modules") + "/Utils/lib/UtilsMain.ts",
+      "UtilsUser": path.join(__dirname, "node_modules") + "/Utils/lib/UtilsUser.ts",
+      "UtilsBrowser": path.join(__dirname, "node_modules") + "/Utils/lib/UtilsBrowser.ts",
       "EverCookie": path.join(__dirname, "node_modules")
       + "/EverCookie/lib/EverCookie.ts"
     }

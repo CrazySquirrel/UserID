@@ -13,6 +13,15 @@
     ],
     "Utils": [
       "./node_modules/Utils/lib/Utils.ts"
+    ],
+    "UtilsMain": [
+      "./node_modules/Utils/lib/UtilsMain.ts"
+    ],
+    "UtilsUser": [
+      "./node_modules/Utils/lib/UtilsUser.ts"
+    ],
+    "UtilsBrowser": [
+      "./node_modules/Utils/lib/UtilsBrowser.ts"
     ]
   },
   "files": [

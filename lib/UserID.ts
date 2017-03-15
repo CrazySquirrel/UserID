@@ -26,7 +26,10 @@ let btoa = require("btoa");
 import MurmurHash3 from "./MurmurHash3";
 
 import EverCookie from "EverCookie";
-import Utils from "Utils";
+import UtilsBrowser from "UtilsBrowser";
+import UtilsMain from "UtilsMain";
+import UtilsUser from "UtilsUser";
+
 /**
  * User ID class
  */
@@ -218,7 +221,7 @@ export default class UserID implements IUserID {
     this.IDEverCookie = "";
     this.IDUID = "";
     this.IDBASE = UserID.getFingerPrintHash(JSON.stringify([
-      Utils.User.getInfo(),
+      UtilsUser.getInfo(),
       UserID.getUserLanguage(),
       UserID.getTimezoneOffset(),
       this.getPlugins(),
@@ -245,7 +248,7 @@ export default class UserID implements IUserID {
       }
     });
 
-    Utils.implementationStaticMethods(this, "UserID");
+    UtilsMain.implementationStaticMethods(this, "UserID");
   }
 
   /**
@@ -266,7 +269,7 @@ export default class UserID implements IUserID {
   public getUID(callback) {
     this.getIP((result) => {
       callback([
-        Utils.User.getInfo(),
+        UtilsUser.getInfo(),
         UserID.getUserLanguage(),
         UserID.getTimezoneOffset(),
         this.getPlugins(),
@@ -281,7 +284,7 @@ export default class UserID implements IUserID {
    */
   public getPlugins(): Object|boolean {
     try {
-      if (Utils.Browser.isMSIE()) {
+      if (UtilsBrowser.isMSIE()) {
         return {
           Plugins: this.getIEPlugins(),
         };
@@ -440,18 +443,20 @@ export default class UserID implements IUserID {
    */
   public getIP(callback) {
     try {
-      this.getIPFromRTC((result) => {
-        if (result) {
-          callback(result);
-        } else if (
-            this.Settings &&
-            this.Settings.IPUrl
-        ) {
-          this.getIPFromServer(callback);
-        } else {
-          callback(false);
-        }
-      });
+      if (
+          this.Settings &&
+          this.Settings.IPUrl
+      ) {
+        this.getIPFromServer(callback);
+      } else {
+        this.getIPFromRTC((result) => {
+          if (result) {
+            callback(result);
+          } else {
+            callback(false);
+          }
+        });
+      }
     } catch (e) {
       callback(false);
     }

@@ -4,7 +4,7 @@
  */
 import IMurmurHash3 from "../interfaces/IMurmurHash3";
 
-import Utils from "Utils";
+import UtilsMain from "UtilsMain";
 /**
  * MurmurHash3
  */
@@ -280,6 +280,6 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * MurmurHash3 constructor
      */
     constructor() {
-        Utils.implementationStaticMethods(this, "MurmurHash3");
+        UtilsMain.implementationStaticMethods(this, "MurmurHash3");
     }
 }

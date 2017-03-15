@@ -3,4 +3,7 @@ declare let require: any;
 require("./index.html");
 
 import UserID from "../../lib/UserID.ts";
-window.document.write("User ID: " + (new UserID()).getID());
+
+window.document.write("User ID: " + (new UserID({
+      IPUrl: "//ssp.rambler.ru/userip",
+    })).getID());
