@@ -11,8 +11,8 @@ Unique user ID generator.
 
 ## Build
 
-The repository contains pre-compiled files, but if you want to add your files and compile,
-then run the following commands in the repository folder.
+The repository contains pre-compiled files, but if you want to add your
+files and compile, then run the following commands in the repository folder.
 
 * npm install
 * npm run production
@@ -39,5 +39,7 @@ let UserID = required("UserID.js");
 let ID = (new UserID()).getID();
 ```
 
-Note that when you first start the module it needs some time to calculate finally UID.
+Note that when you first start the module it needs some time to calculate
+finally UID.
+
 So initialize it in the first time as early as possible in the code.
