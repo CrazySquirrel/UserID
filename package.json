@@ -39,10 +39,10 @@
     }
   },
   "dependencies": {
-    "AnimationFrame": "^1.0.x",
-    "CSLogger": "^1.0.x",
-    "EverCookie": "^1.0.x",
-    "Utils": "^1.0.x",
+    "AnimationFrame": "^1.x.x",
+    "CSLogger": "^1.x.x",
+    "EverCookie": "^1.x.x",
+    "Utils": "^1.x.x",
     "btoa": "^1.1.2"
   },
   "devDependencies": {
