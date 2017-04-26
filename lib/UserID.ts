@@ -201,6 +201,7 @@ export default class UserID implements IUserID {
   public IDEverCookie: any;
   public IDUID: any;
   public IDBASE: any;
+  public IDTested: any;
 
   public Settings: any = {
     IPUrl: "",
@@ -219,6 +220,7 @@ export default class UserID implements IUserID {
      */
     this.Settings = settings;
     this.IDEverCookie = "";
+    this.IDTested = "";
     this.IDUID = "";
     this.IDBASE = UserID.getFingerPrintHash(JSON.stringify([
       UtilsUser.getInfo(),
@@ -232,6 +234,7 @@ export default class UserID implements IUserID {
      */
     this.EverCookie = new EverCookie("#PACKAGE_NAME#_#PACKAGE_VERSION#");
     this.IDEverCookie = this.EverCookie.getItem(true, "FingerPrint");
+    this.IDTested = this.EverCookie.getItem(true, "FingerPrintTested");
     /**
      * Get full ID
      */
@@ -259,7 +262,7 @@ export default class UserID implements IUserID {
     /**
      * Return full user ID, ID from storage or base ID if one of them exist
      */
-    return this.IDUID || this.IDEverCookie || this.IDBASE;
+    return this.IDTested || this.IDUID || this.IDEverCookie || this.IDBASE;
   }
 
   /**
