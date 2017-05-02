@@ -4,7 +4,7 @@
  */
 import IMurmurHash3 from "../interfaces/IMurmurHash3";
 
-import UtilsMain from "UtilsMain";
+import UtilsMain from "Utils/lib/UtilsMain";
 /**
  * MurmurHash3
  */

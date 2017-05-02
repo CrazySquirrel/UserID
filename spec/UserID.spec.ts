@@ -1,7 +1,5 @@
 "use strict";
 
-declare let beforeEach: any;
-declare let afterEach: any;
 declare let describe: any;
 declare let it: any;
 declare let expect: any;
@@ -28,6 +26,6 @@ describe("UserID", () => {
           done();
         },
         3000
-    )
+    );
   });
 });

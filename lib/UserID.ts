@@ -25,10 +25,10 @@ let btoa = require("btoa");
  */
 import MurmurHash3 from "./MurmurHash3";
 
-import EverCookie from "EverCookie";
-import UtilsBrowser from "UtilsBrowser";
-import UtilsMain from "UtilsMain";
-import UtilsUser from "UtilsUser";
+import EverCookie from "EverCookie/lib/EverCookie";
+import UtilsBrowser from "Utils/lib/UtilsBrowser";
+import UtilsMain from "Utils/lib/UtilsMain";
+import UtilsUser from "Utils/lib/UtilsUser";
 
 /**
  * User ID class
