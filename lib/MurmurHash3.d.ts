@@ -32,7 +32,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param n
      * @return {Array<number>}
      */
-    static x64Rotated(m: any, n: any): Array<number>;
+    static x64Rotated(m: any, n: any): number[];
     /**
      * Given a 64bit int (as an array of two 32bit int) and an int
      * representing a number of bit positions, returns the 64bit int (as an
@@ -41,7 +41,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param n
      * @return {Array<number>}
      */
-    static x64LeftShift(m: any, n: any): Array<number>;
+    static x64LeftShift(m: any, n: any): number[];
     /**
      * Given two 64bit int (as an array of two 32bit int) returns the two
      * xor together as a 64bit int (as an array of two 32bit int).
@@ -49,7 +49,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param n
      * @return {Array<number>}
      */
-    static x64Xor(m: any, n: any): Array<number>;
+    static x64Xor(m: any, n: any): number[];
     /**
      * Given a block, returns murmurHash3's final x64 mix of that block.
      * (`[0, h[0] >>> 1]` is a 33 bit unsigned right shift. This is the
@@ -57,7 +57,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param h
      * @return {Array<number>}
      */
-    static x64mix(h: any): Array<number>;
+    static x64mix(h: any): number[];
     /**
      * Given a string and an optional seed as an int, returns a 128 bit
      * hash using the x64 flavor of MurmurHash3, as an unsigned hex.

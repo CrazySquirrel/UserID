@@ -18,7 +18,7 @@ import IUserID from "../interfaces/IUserID";
 /**
  * Import dependency polyfills
  */
-let btoa = require("btoa");
+const btoa = require("btoa");
 
 /**
  * Import dependency classes
@@ -63,7 +63,7 @@ export default class UserID implements IUserID {
           /**
            * Init EverCookie for that version
            */
-          let LocalEverCookie = new EverCookie(key);
+          const LocalEverCookie = new EverCookie(key);
           /**
            * Clean storage
            */
@@ -111,11 +111,11 @@ export default class UserID implements IUserID {
    * @return {string}
    */
   public static getFingerPrintHash(dump): string {
-    let murmur = MurmurHash3.x64hash128(dump, 31);
+    const murmur = MurmurHash3.x64hash128(dump, 31);
 
-    let i1 = 4004;
-    let i2 = 1471357547; // Fake date.
-    let i3 = UserID.fnv32a(murmur.substr(0, 16), murmur);
+    const i1 = 4004;
+    const i2 = 1471357547; // Fake date.
+    const i3 = UserID.fnv32a(murmur.substr(0, 16), murmur);
     let i4 = UserID.fnv32a(murmur.substr(16, 16), murmur);
 
     i4 = (i4 & 0xFFFFFF00) | 0x01;
@@ -134,9 +134,9 @@ export default class UserID implements IUserID {
    * Get User Language
    * @return {Object|boolean}
    */
-  public static getUserLanguage(): Object|boolean {
+  public static getUserLanguage(): any|boolean {
     try {
-      let _navigator: any = window.navigator;
+      const _navigator: any = window.navigator;
       return ({
         UserLanguage: (
             _navigator.language ||
@@ -155,7 +155,7 @@ export default class UserID implements IUserID {
    * Get Timezone Offset
    * @return {Object|boolean}
    */
-  public static getTimezoneOffset(): Object|boolean {
+  public static getTimezoneOffset(): any|boolean {
     try {
       return ({
         TimezoneOffset: new Date().getTimezoneOffset(),
@@ -184,7 +184,8 @@ export default class UserID implements IUserID {
         }
       }
     } else {
-      for (let key in obj) {
+      for (let j = 0; j < obj.length; j++) {
+        const key = obj[j];
         if (obj.hasOwnProperty(key)) {
           if (iterator.call(context, obj[key], key, obj) === {}) {
             return;
@@ -285,7 +286,7 @@ export default class UserID implements IUserID {
    * Get Plugins
    * @return {Object|boolean}
    */
-  public getPlugins(): Object|boolean {
+  public getPlugins(): any|boolean {
     try {
       if (UtilsBrowser.isMSIE()) {
         return {
@@ -305,7 +306,7 @@ export default class UserID implements IUserID {
    * Get IE plugins
    * @return {Array}
    */
-  public getIEPlugins(): Array<any> {
+  public getIEPlugins(): any[] {
     try {
       let arrResult = [];
       /**
@@ -322,7 +323,7 @@ export default class UserID implements IUserID {
          * List of expected plugins
          * @type {string[]}
          */
-        let arrExpectedPluginsList = [
+        const arrExpectedPluginsList = [
           "AcroPDF.PDF", // Adobe PDF reader 7+
           "Adodb.Stream",
           "AgControl.AgControl", // Silverlight
@@ -354,7 +355,7 @@ export default class UserID implements IUserID {
             arrExpectedPluginsList,
             (name) => {
               try {
-                let a = new ActiveXObject(name);
+                const a = new window.ActiveXObject(name);
                 if (a) {
                   return name;
                 } else {
@@ -364,7 +365,7 @@ export default class UserID implements IUserID {
                 return null;
               }
             },
-            this
+            this,
         );
       }
       /**
@@ -418,14 +419,14 @@ export default class UserID implements IUserID {
       return this.map(
           arrPlugins,
           (p) => {
-            let mimeTypes = this.map(
+            const mimeTypes = this.map(
                 p,
                 (mt) => {
                   return [
                     mt.type,
                     mt.suffixes,
                   ].join("~");
-                }
+                },
             ).join(",");
             return [
               p.name,
@@ -433,7 +434,7 @@ export default class UserID implements IUserID {
               mimeTypes,
             ].join("::");
           },
-          this
+          this,
       );
     } catch (e) {
       return [];
@@ -477,13 +478,13 @@ export default class UserID implements IUserID {
           window.webkitRTCPeerConnection
       );
       if (window.RTCPeerConnection) {
-        let pc: any = new window.RTCPeerConnection({iceServers: []});
+        const pc: any = new window.RTCPeerConnection({iceServers: []});
         pc.onicecandidate = (ice) => {
           if (!ice || !ice.candidate || !ice.candidate.candidate) {
             callback(false);
           } else {
-            let myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(
-                ice.candidate.candidate
+            const myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(
+                ice.candidate.candidate,
             )[1];
             pc.onicecandidate = () => {
               return null;
@@ -515,7 +516,7 @@ export default class UserID implements IUserID {
           this.Settings &&
           this.Settings.IPUrl
       ) {
-        let xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.onload = () => {
           if (xhr.readyState !== 4) {
             return;
@@ -548,8 +549,8 @@ export default class UserID implements IUserID {
    * @param context
    * @return {Array}
    */
-  public map(obj, iterator, context?: any): Array<any> {
-    let results = [];
+  public map(obj, iterator, context?: any): any[] {
+    const results = [];
     if (obj === null) {
       return results;
     }
@@ -561,7 +562,7 @@ export default class UserID implements IUserID {
         (value, index, list) => {
           results[results.length] = iterator.call(context, value, index, list);
         },
-        context
+        context,
     );
     return results;
   }

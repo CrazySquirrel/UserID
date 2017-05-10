@@ -15,5 +15,6 @@ interface IWindow {
     localStorage: ILocalStorage;
     sessionStorage: ISessionStorage;
     UserID: IUserID;
+    ActiveXObject: any;
 }
 export default IWindow;

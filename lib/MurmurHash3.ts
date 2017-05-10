@@ -21,7 +21,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
     public static x64Add(m, n) {
         m = [m[0] >>> 16, m[0] & 0xffff, m[1] >>> 16, m[1] & 0xffff];
         n = [n[0] >>> 16, n[0] & 0xffff, n[1] >>> 16, n[1] & 0xffff];
-        let o = [0, 0, 0, 0];
+        const o = [0, 0, 0, 0];
         o[3] += m[3] + n[3];
         o[2] += o[3] >>> 16;
         o[3] &= 0xffff;
@@ -46,7 +46,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
     public static x64Multiply(m, n) {
         m = [m[0] >>> 16, m[0] & 0xffff, m[1] >>> 16, m[1] & 0xffff];
         n = [n[0] >>> 16, n[0] & 0xffff, n[1] >>> 16, n[1] & 0xffff];
-        let o = [0, 0, 0, 0];
+        const o = [0, 0, 0, 0];
         o[3] += m[3] * n[3];
         o[2] += o[3] >>> 16;
         o[3] &= 0xffff;
@@ -78,7 +78,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param n
      * @return {Array<number>}
      */
-    public static x64Rotated(m, n): Array<number> {
+    public static x64Rotated(m, n): number[] {
         n %= 64;
         if (n === 32) {
             return [m[1], m[0]];
@@ -98,7 +98,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param n
      * @return {Array<number>}
      */
-    public static x64LeftShift(m, n): Array<number> {
+    public static x64LeftShift(m, n): number[] {
         n %= 64;
         if (n === 0) {
             return m;
@@ -116,7 +116,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param n
      * @return {Array<number>}
      */
-    public static x64Xor(m, n): Array<number> {
+    public static x64Xor(m, n): number[] {
         return [m[0] ^ n[0], m[1] ^ n[1]];
     }
 
@@ -127,7 +127,7 @@ export default class MurmurHash3 implements IMurmurHash3 {
      * @param h
      * @return {Array<number>}
      */
-    public static x64mix(h): Array<number> {
+    public static x64mix(h): number[] {
         h = this.x64Xor(h, [0, h[0] >>> 1]);
         h = this.x64Multiply(h, [0xff51afd7, 0xed558ccd]);
         h = this.x64Xor(h, [0, h[0] >>> 1]);
@@ -148,14 +148,14 @@ export default class MurmurHash3 implements IMurmurHash3 {
         seed = seed || 0;
 
         let i;
-        let remainder = key.length % 16;
-        let bytes = key.length - remainder;
+        const remainder = key.length % 16;
+        const bytes = key.length - remainder;
         let h1 = [0, seed];
         let h2 = [0, seed];
         let k1 = [0, 0];
         let k2 = [0, 0];
-        let c1 = [0x87c37b91, 0x114253d5];
-        let c2 = [0x4cf5ad43, 0x2745937f];
+        const c1 = [0x87c37b91, 0x114253d5];
+        const c2 = [0x4cf5ad43, 0x2745937f];
 
         for (i = 0; i < bytes; i = i + 16) {
             k1 = [
@@ -263,15 +263,15 @@ export default class MurmurHash3 implements IMurmurHash3 {
         h1 = this.x64Add(h1, h2);
         h2 = this.x64Add(h2, h1);
 
-        let n1: number = (h1[0] >>> 0);
-        let n2: number = (h1[1] >>> 0);
-        let n3: number = (h2[0] >>> 0);
-        let n4: number = (h2[1] >>> 0);
+        const n1: number = (h1[0] >>> 0);
+        const n2: number = (h1[1] >>> 0);
+        const n3: number = (h2[0] >>> 0);
+        const n4: number = (h2[1] >>> 0);
 
-        let s1: string = ("00000000" + n1.toString(16)).slice(-8);
-        let s2: string = ("00000000" + n2.toString(16)).slice(-8);
-        let s3: string = ("00000000" + n3.toString(16)).slice(-8);
-        let s4: string = ("00000000" + n4.toString(16)).slice(-8);
+        const s1: string = ("00000000" + n1.toString(16)).slice(-8);
+        const s2: string = ("00000000" + n2.toString(16)).slice(-8);
+        const s3: string = ("00000000" + n3.toString(16)).slice(-8);
+        const s4: string = ("00000000" + n4.toString(16)).slice(-8);
 
         return (s1 + s2 + s3 + s4);
     }

@@ -33,12 +33,12 @@ export default class UserID implements IUserID {
      * Get User Language
      * @return {Object|boolean}
      */
-    static getUserLanguage(): Object | boolean;
+    static getUserLanguage(): any | boolean;
     /**
      * Get Timezone Offset
      * @return {Object|boolean}
      */
-    static getTimezoneOffset(): Object | boolean;
+    static getTimezoneOffset(): any | boolean;
     /**
      * Each emulation for Arrays and Objects
      * @param obj
@@ -73,12 +73,12 @@ export default class UserID implements IUserID {
      * Get Plugins
      * @return {Object|boolean}
      */
-    getPlugins(): Object | boolean;
+    getPlugins(): any | boolean;
     /**
      * Get IE plugins
      * @return {Array}
      */
-    getIEPlugins(): Array<any>;
+    getIEPlugins(): any[];
     /**
      * Get other browser plugins
      * @return {Object}
@@ -106,5 +106,5 @@ export default class UserID implements IUserID {
      * @param context
      * @return {Array}
      */
-    map(obj: any, iterator: any, context?: any): Array<any>;
+    map(obj: any, iterator: any, context?: any): any[];
 }

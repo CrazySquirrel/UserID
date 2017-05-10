@@ -7,7 +7,7 @@ declare let require: any;
 
 import UserIDClass from "../lib/UserID";
 
-let UserID = new UserIDClass();
+const UserID = new UserIDClass();
 
 describe("UserID", () => {
 
@@ -15,17 +15,17 @@ describe("UserID", () => {
     expect(typeof(UserIDClass)).toEqual("function");
     expect(typeof(UserID)).toEqual("object");
 
-    let result = UserID.getID();
+    const result = UserID.getID();
     expect(typeof(result)).toEqual("string");
 
     setTimeout(
         () => {
-          let _result = UserID.getID();
+          const _result = UserID.getID();
           expect(typeof(_result)).toEqual("string");
 
           done();
         },
-        3000
+        3000,
     );
   });
 });
