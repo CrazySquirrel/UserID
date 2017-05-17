@@ -20,12 +20,12 @@ describe("UserID", () => {
 
   it("UserID.getID", (done) => {
     const result = UserID.getID();
-    expect(result instanceof String).toEqual(true);
+    expect(typeof(result)).toEqual("string");
 
     setTimeout(
         () => {
           ID = UserID.getID();
-          expect(ID instanceof String).toEqual(true);
+          expect(typeof(ID)).toEqual("string");
           done();
         },
         3000,
@@ -34,7 +34,7 @@ describe("UserID", () => {
 
   it("UserID.getAccurateID", (done) => {
     UserID.getAccurateID().then((result) => {
-      expect(result instanceof String).toEqual(true);
+      expect(typeof(result)).toEqual("string");
       expect(result).toEqual(ID);
       done();
     });

@@ -265,28 +265,10 @@ export default class UserID implements IUserID {
    * @return {string}
    */
   public getID(): any {
-    const that = this;
-
-    const returnNewID = () => {
-
-      let ID: any = new String(that._getID());
-
-      const getValue = () => {
-        ID = returnNewID();
-        return that._getID();
-      };
-
-      ID.get = getValue;
-      ID.toString = getValue;
-      ID.toSource = getValue;
-      ID.toJSON = getValue;
-      ID.toLocaleString = getValue;
-      ID.valueOf = getValue;
-
-      return ID;
-    };
-
-    return returnNewID();
+    /**
+     * Return full user ID, ID from storage or base ID if one of them exist
+     */
+    return this.IDTested || this.IDUID || this.IDEverCookie || this.IDBASE;
   }
 
   /**
@@ -610,13 +592,6 @@ export default class UserID implements IUserID {
         context,
     );
     return results;
-  }
-
-  private _getID(): string {
-    /**
-     * Return full user ID, ID from storage or base ID if one of them exist
-     */
-    return this.IDTested || this.IDUID || this.IDEverCookie || this.IDBASE;
   }
 }
 
