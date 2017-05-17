@@ -25,8 +25,6 @@ window.Promise = window.Promise || require("promise-polyfill");
 /**
  * Import dependency classes
  */
-import MurmurHash3 from "./MurmurHash3";
-
 import EverCookie from "EverCookie/lib/EverCookie";
 import UtilsBrowser from "Utils/lib/UtilsBrowser";
 import UtilsMain from "Utils/lib/UtilsMain";
@@ -113,12 +111,10 @@ export default class UserID implements IUserID {
    * @return {string}
    */
   public static getFingerPrintHash(dump): string {
-    const murmur = MurmurHash3.x64hash128(dump, 31);
-
     const i1 = 4004;
     const i2 = 1471357547; // Fake date.
-    const i3 = UserID.fnv32a(murmur.substr(0, 16), murmur);
-    let i4 = UserID.fnv32a(murmur.substr(16, 16), murmur);
+    const i3 = UserID.fnv32a(dump.substr(0, dump.length / 2), 0x811c9dc5);
+    let i4 = UserID.fnv32a(dump.substr(dump.length / 2), i3);
 
     i4 = (i4 & 0xFFFFFF00) | 0x01;
 
@@ -206,6 +202,7 @@ export default class UserID implements IUserID {
   public IDBASE: string;
   public IDTested: string;
   public isAccurate: boolean;
+  public UserData: any;
 
   public Settings: any = {
     IPUrl: "",
@@ -226,12 +223,13 @@ export default class UserID implements IUserID {
     this.IDEverCookie = "";
     this.IDTested = "";
     this.IDUID = "";
-    this.IDBASE = UserID.getFingerPrintHash(JSON.stringify([
+    this.UserData = JSON.stringify([
       UtilsUser.getInfo(),
       UserID.getUserLanguage(),
       UserID.getTimezoneOffset(),
       this.getPlugins(),
-    ]));
+    ]);
+    this.IDBASE = UserID.getFingerPrintHash(this.UserData);
     /**
      * Init EveryCookie and get ID
      * @type {EverCookie}
@@ -247,7 +245,8 @@ export default class UserID implements IUserID {
       /**
        * Convert user signs to Rambler format
        */
-      this.IDUID = UserID.getFingerPrintHash(JSON.stringify(result));
+      this.UserData = JSON.stringify(result);
+      this.IDUID = UserID.getFingerPrintHash(this.UserData);
       /**
        * Write full user ID into the EverCookie
        */

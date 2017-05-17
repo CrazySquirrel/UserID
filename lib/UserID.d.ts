@@ -55,6 +55,7 @@ export default class UserID implements IUserID {
     IDBASE: string;
     IDTested: string;
     isAccurate: boolean;
+    UserData: any;
     Settings: any;
     /**
      * User ID constructor
