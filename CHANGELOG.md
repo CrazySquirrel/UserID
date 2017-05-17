@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.9"></a>
+## [1.1.9](https://github.com/CrazySquirrel/UserID/compare/v1.1.8...v1.1.9) (2017-05-17)
+
+
+### Bug Fixes
+
+* **Interface:** Interface bug fix ([7ee47e2](https://github.com/CrazySquirrel/UserID/commit/7ee47e2))
+
+
+
 <a name="1.1.8"></a>
 ## [1.1.8](https://github.com/CrazySquirrel/UserID/compare/v1.1.7...v1.1.8) (2017-05-17)
 
