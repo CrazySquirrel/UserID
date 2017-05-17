@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.7"></a>
+## [1.1.7](https://github.com/CrazySquirrel/UserID/compare/v1.1.6...v1.1.7) (2017-05-17)
+
+
+### Bug Fixes
+
+* **Example:** User Accurate ID example ([af6f889](https://github.com/CrazySquirrel/UserID/commit/af6f889))
+
+
+
 <a name="1.1.6"></a>
 ## [1.1.6](https://github.com/CrazySquirrel/UserID/compare/v1.1.5...v1.1.6) (2017-05-17)
 
