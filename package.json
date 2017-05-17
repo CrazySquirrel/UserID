@@ -56,7 +56,8 @@
     "CSLogger": "^1.x.x",
     "EverCookie": "^1.x.x",
     "Utils": "^1.x.x",
-    "btoa": "^1.1.2"
+    "btoa": "^1.1.2",
+    "promise-polyfill": "^6.0.2"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.47",

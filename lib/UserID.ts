@@ -20,6 +20,8 @@ import IUserID from "../interfaces/IUserID";
  */
 const btoa = require("btoa");
 
+window.Promise = window.Promise || require("promise-polyfill");
+
 /**
  * Import dependency classes
  */
@@ -199,10 +201,11 @@ export default class UserID implements IUserID {
    * Declare UserID properties
    */
   public EverCookie: any;
-  public IDEverCookie: any;
-  public IDUID: any;
-  public IDBASE: any;
-  public IDTested: any;
+  public IDEverCookie: string;
+  public IDUID: string;
+  public IDBASE: string;
+  public IDTested: string;
+  public isAccurate: boolean;
 
   public Settings: any = {
     IPUrl: "",
@@ -233,6 +236,7 @@ export default class UserID implements IUserID {
      * Init EveryCookie and get ID
      * @type {EverCookie}
      */
+    this.isAccurate = false;
     this.EverCookie = new EverCookie("#PACKAGE_NAME#_#PACKAGE_VERSION#");
     this.IDEverCookie = this.EverCookie.getItem(true, "FingerPrint");
     this.IDTested = this.EverCookie.getItem(true, "FingerPrintTested");
@@ -250,6 +254,7 @@ export default class UserID implements IUserID {
       if (this.IDEverCookie !== this.IDUID) {
         this.EverCookie.setItem(true, "FingerPrint", this.IDUID);
       }
+      this.isAccurate = true;
     });
 
     UtilsMain.implementationStaticMethods(this, "UserID");
@@ -259,11 +264,51 @@ export default class UserID implements IUserID {
    * Get user ID
    * @return {string}
    */
-  public getID(): string {
-    /**
-     * Return full user ID, ID from storage or base ID if one of them exist
-     */
-    return this.IDTested || this.IDUID || this.IDEverCookie || this.IDBASE;
+  public getID(): any {
+    const that = this;
+
+    const returnNewID = () => {
+
+      let ID: any = new String(that._getID());
+
+      const getValue = () => {
+        ID = returnNewID();
+        return that._getID();
+      };
+
+      ID.get = getValue;
+      ID.toString = getValue;
+      ID.toSource = getValue;
+      ID.toJSON = getValue;
+      ID.toLocaleString = getValue;
+      ID.valueOf = getValue;
+
+      return ID;
+    };
+
+    return returnNewID();
+  }
+
+  /**
+   * Get accurate user ID
+   * @return {Promise<any>}
+   */
+  public getAccurateID(): Promise<any> {
+    return new Promise((resolve) => {
+      if (this.isAccurate) {
+        resolve(this.getID());
+      } else {
+        const ID = setInterval(
+            () => {
+              if (this.isAccurate) {
+                clearInterval(ID);
+                resolve(this.getID());
+              }
+            },
+            100,
+        );
+      }
+    });
   }
 
   /**
@@ -565,6 +610,13 @@ export default class UserID implements IUserID {
         context,
     );
     return results;
+  }
+
+  private _getID(): string {
+    /**
+     * Return full user ID, ID from storage or base ID if one of them exist
+     */
+    return this.IDTested || this.IDUID || this.IDEverCookie || this.IDBASE;
   }
 }
 

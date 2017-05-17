@@ -50,10 +50,11 @@ export default class UserID implements IUserID {
      * Declare UserID properties
      */
     EverCookie: any;
-    IDEverCookie: any;
-    IDUID: any;
-    IDBASE: any;
-    IDTested: any;
+    IDEverCookie: string;
+    IDUID: string;
+    IDBASE: string;
+    IDTested: string;
+    isAccurate: boolean;
     Settings: any;
     /**
      * User ID constructor
@@ -63,7 +64,12 @@ export default class UserID implements IUserID {
      * Get user ID
      * @return {string}
      */
-    getID(): string;
+    getID(): any;
+    /**
+     * Get accurate user ID
+     * @return {Promise<any>}
+     */
+    getAccurateID(): Promise<any>;
     /**
      * Get user full ID
      * @param callback
@@ -107,4 +113,5 @@ export default class UserID implements IUserID {
      * @return {Array}
      */
     map(obj: any, iterator: any, context?: any): any[];
+    private _getID();
 }

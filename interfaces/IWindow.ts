@@ -8,18 +8,18 @@ import IUserID from "./IUserID";
 /**
  * The storage interface
  */
-interface IWindow {
+interface IWindow extends Window {
   RTCPeerConnection: any;
   mozRTCPeerConnection: any;
   webkitRTCPeerConnection: any;
 
   navigator: Navigator;
 
-  localStorage: ILocalStorage;
-  sessionStorage: ISessionStorage;
   UserID: IUserID;
 
   ActiveXObject: any;
+
+  Promise: any;
 }
 /**
  * Declare window interface
