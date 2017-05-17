@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.6"></a>
+## [1.1.6](https://github.com/CrazySquirrel/UserID/compare/v1.1.5...v1.1.6) (2017-05-17)
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/CrazySquirrel/UserID/compare/v1.1.4...v1.1.5) (2017-05-17)
 
