@@ -8,4 +8,10 @@ window["_UserID"] = new UserID({
   IPUrl: "//ssp.rambler.ru/userip",
 });
 
-window.document.write("User ID: " + window["_UserID"].getID());
+let ID = window["_UserID"].getID();
+
+window.document.write("User ID: " + ID);
+
+window["_UserID"].getAccurateID().then((_ID) => {
+  window.document.write("User ID: " + ID + "<br/>User Accurate ID: " + _ID);
+});

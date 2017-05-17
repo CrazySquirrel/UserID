@@ -113,5 +113,4 @@ export default class UserID implements IUserID {
      * @return {Array}
      */
     map(obj: any, iterator: any, context?: any): any[];
-    private _getID();
 }
