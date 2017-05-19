@@ -224,6 +224,9 @@ export default class UserID implements IUserID {
     this.IDTested = "";
     this.IDUID = "";
     this.UserData = JSON.stringify([
+      {
+        UserAgent: navigator.userAgent,
+      },
       UtilsUser.getInfo(),
       UserID.getUserLanguage(),
       UserID.getTimezoneOffset(),
@@ -299,6 +302,9 @@ export default class UserID implements IUserID {
   public getUID(callback) {
     this.getIP((result) => {
       callback([
+        {
+          UserAgent: navigator.userAgent,
+        },
         UtilsUser.getInfo(),
         UserID.getUserLanguage(),
         UserID.getTimezoneOffset(),
@@ -477,18 +483,30 @@ export default class UserID implements IUserID {
           this.Settings &&
           this.Settings.IPUrl
       ) {
-        this.getIPFromServer(callback);
+        this.getIPFromServer((result) => {
+          if (result) {
+            callback(result);
+          } else {
+            this.getIPFromRTC((_result) => {
+              if (_result) {
+                callback(_result);
+              } else {
+                callback({IP: "0.0.0.0"});
+              }
+            });
+          }
+        });
       } else {
         this.getIPFromRTC((result) => {
           if (result) {
             callback(result);
           } else {
-            callback(false);
+            callback({IP: "0.0.0.0"});
           }
         });
       }
     } catch (e) {
-      callback(false);
+      callback({IP: "0.0.0.0"});
     }
   }
 
